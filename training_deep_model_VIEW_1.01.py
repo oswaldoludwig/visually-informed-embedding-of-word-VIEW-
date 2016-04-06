@@ -172,49 +172,4 @@ print('model structure saved again')
 
 
 
-model.load_weights('my_model_weights.h5')
-score, acc = model.evaluate(X_test, y_test, batch_size=batch_size, show_accuracy=True)
-print('Test score (MSE):', score)
-print('Test acc:', acc)
-get_output = theano.function([model.layers[0].input], model.layers[6].get_output(train=False))    
-est_y_test=get_output(X_test)
-
-def get_pos_max(a):
-    m = max(a)
-    return [i for i, j in enumerate(a) if j == m]
-
-
-
-i=0
-acc_test_sp=0.0001
-acc_test_objone=0.0001
-acc_test_objtwo=0.0001
-
-for y in y_test:
-    
-    if get_pos_max(y[0:1])==get_pos_max(est_y_test[i][0:1]):
-        acc_test_sp = acc_test_sp + 1
-        
-    if get_pos_max(y[2:99])==get_pos_max(est_y_test[i][2:99]):
-        
-        acc_test_objone = acc_test_objone + 1
-        
-    if get_pos_max(y[100:201])==get_pos_max(est_y_test[i][100:201]):
-        acc_test_objtwo = acc_test_objtwo + 1
-        
-    i += 1 
-    
-
-acc_test_sp = acc_test_sp / 2997
-acc_test_objone = acc_test_objone / 2997
-acc_test_objtwo = acc_test_objtwo / 2997
-print('Test score (acc sp):', acc_test_sp)
-print('Test score (acc obj1):', acc_test_objone)
-print('Test score (acc obj2):', acc_test_objtwo)
-
-
-   
-
-
-
 
