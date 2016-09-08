@@ -29,8 +29,8 @@ https://www.mathworks.com/matlabcentral/fileexchange/29553-feature-selector-base
 
 4) Run “training_deep_model_VIEW_1.01.py” to train the deep model from which VIEW is extracted (optionally you can also extract from this model the sentence-level embedding). This code generates the file “vocabulary”, containing the 5000 most frequent words in MS-COCO, and  the files “my_model_struct.json”, and “my_model_weights.h5”, with the model structure and weights, respectively. The libraries Theano and Keras are required, besides other libraries to NLP (see the import commands in the code). To run in GPU you can call the code like this: THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32,exception_verbosity=high python training_deep_model_VIEW_1.01.py
 
-5) After training it is possible to see a plotting of the PCA projection of the resulting VIEW of some words by running “PCA_projection_1.01.py” or “PCA_projection_1.02.py” (for those who are using the latest version of Keras).
+5) After training it is possible to see a plotting of the PCA projection of the resulting VIEW of some words by running “PCA_projection_1.01.py” (or “PCA_projection_1.02.py” for those who are using the latest version of Keras).
 
-6) Run “saving_embedding_1.01.py” or “saving_embedding_1.02.py” (for those who are using the latest version of Keras) to save the VIEW vectors in the file “embedding_for_vocabulary” corresponding to the file “vocabulary”, which contains the 4999 most frequent words in MS-COCO. 
+6) Run “saving_embedding_1.01.py” (or “saving_embedding_1.02.py” for those who are using the latest version of Keras) to save the VIEW vectors in the file “embedding_for_vocabulary” corresponding to the file “vocabulary”, which contains the 4999 most frequent words in MS-COCO. 
 
 I also included Excel files containing the VIEW for those who don't want to run the Python code. "vocabulary_excel.xls" contains a vocabulary with the 4999 more frequent words of COCO and "embeddings_excel.xlsx" contains the respective visually informed embeddings of 200 features.
