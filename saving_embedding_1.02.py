@@ -39,7 +39,7 @@ import pylab
 import mask
 import xlwt
 import pandas as pd
-#from keras import backend as K
+
 
 def get_embeddings(vocab,model_file,weights_file):
     unknown_token = "UNKNOWN_TOKEN"
@@ -47,16 +47,15 @@ def get_embeddings(vocab,model_file,weights_file):
     maxlen = len(vocab)
     
     print('The vocabulary has %s words.'%maxlen)
-    #print vocab[10][0]
+
     #loading the trained VIEW model:
     
     model = model_from_json(open(model_file).read())
     model.load_weights(weights_file)
     
     voc = ''    
-    for n in range(maxlen/100):
+    for n in range(maxlen):
         wo = str(vocab[n][0])
-        #print type(wo)
         voc ='%s %s'%(voc,wo)
     
     print voc[0:50]
@@ -83,15 +82,16 @@ def get_embeddings(vocab,model_file,weights_file):
 
     #Assembling the input vector, i.e. substituting words by indexes:
     X = np.asarray([[word_to_index[w] for w in string] for string in tokenized_list])
+
+    
     print("Pad sequences (samples x time)")
-    #X = sequence.pad_sequences(X, maxlen=maxlen)
-    X = map(list,X)
     X = sequence.pad_sequences(X, maxlen=maxlen)
-    print (X.shape)
-    print (len(X))
+    X = map(list,X)
+    
     #defining a Theano function to get the embedding:
     get_embedding = theano.function([model.layers[0].input], model.layers[0].output)
     print('I have the Theano function')
+    
     #Instantiating X to have the embedding:
     embeddings=get_embedding(X)
     embeddings=embeddings[0]
@@ -104,7 +104,6 @@ model_file='my_model_struct.json'
 with open('vocabulary', 'r') as v:
         vocab=pickle.load(v)
         
-print (len(vocab))
 
 # Generating a xls file containing the vocabulary:
 book = xlwt.Workbook()
@@ -121,6 +120,7 @@ df = pd.DataFrame(embeddings)
 writer = pd.ExcelWriter('embeddings_excel.xlsx', engine='xlsxwriter')
 df.to_excel(writer, sheet_name='Sheet1')
 writer.save()
+# *****************************************************
 
 with open('embedding_for_vocabulary', 'w') as f:
     pickle.dump(embeddings, f)
