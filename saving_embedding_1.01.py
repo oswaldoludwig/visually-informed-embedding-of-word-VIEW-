@@ -52,9 +52,8 @@ def get_embeddings(vocab,model_file,weights_file):
     model.load_weights(weights_file)
     
     voc = ''    
-    for n in range(maxlen/100):
+    for n in range(maxlen):
         wo = str(vocab[n][0])
-        #print type(wo)
         voc ='%s %s'%(voc,wo)
     
     print voc[0:50]
