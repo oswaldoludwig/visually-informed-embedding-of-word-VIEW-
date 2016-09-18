@@ -33,4 +33,4 @@ https://www.mathworks.com/matlabcentral/fileexchange/29553-feature-selector-base
 
 6) Run “saving_embedding_1.01.py” (or “saving_embedding_1.02.py” for those who are using the latest version of Keras) to save the VIEW vectors in the file “embedding_for_vocabulary” corresponding to the file “vocabulary”, which contains the 4999 most frequent words in MS-COCO. 
 
-I also included Excel files containing the VIEW for those who don't want to run the Python code. "vocabulary_excel.xls" contains a vocabulary with the 4999 more frequent words of COCO and "embeddings_excel.xlsx" contains the respective visually informed embeddings of 200 features.
+I also included Excel files containing the VIEW for those who don't want to run the Python code. "vocabulary_excel.xls" contains a vocabulary with the 4999 most frequent words of COCO and "embeddings_excel.xlsx" contains the respective visually informed embeddings of 200 features.
